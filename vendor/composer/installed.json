@@ -1,0 +1,52 @@
+[
+    {
+        "name": "redink-no/wpkit",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/redink-no/wpkit.git",
+            "reference": "eeb748cd4f07ce982865aeb6bda97e061b563eeb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/redink-no/wpkit/zipball/eeb748cd4f07ce982865aeb6bda97e061b563eeb",
+            "reference": "eeb748cd4f07ce982865aeb6bda97e061b563eeb",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "time": "2017-12-21T15:02:19+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "WPKit\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Oleksandr Strikha",
+                "email": "alex@pingbull.no"
+            },
+            {
+                "name": "Vitaly Nikolaev",
+                "email": "vitaly@pingbull.no"
+            },
+            {
+                "name": "Viktor Kuliebiakin",
+                "email": "victor@pingbull.no"
+            }
+        ],
+        "description": "Object-oriented development framework for WordPress",
+        "keywords": [
+            "wordpress",
+            "wpkit"
+        ]
+    }
+]

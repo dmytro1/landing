@@ -1,0 +1,42 @@
+@media (max-width: 768px) {
+     .logo {
+        width: 50px;
+        margin: 0 0 0 10px !important;
+
+    }
+    .navbar-collapse {
+        background-color: #303030;
+    }
+    
+    .navbar-nav>li {
+        border-bottom: 1px solid rgba(255,255,255,.20);
+    }
+
+    .no-border {
+        border: none !important;
+    }
+
+    .text-gift {
+        padding-bottom: 30px;
+    }
+}
+
+@media (min-width: 768px) {
+  .navbar {
+        padding: 20px 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .top-nav-collapse {
+        padding: 0;
+    }
+
+    .text-gift {
+        text-align: left;
+        padding-bottom: 30px;
+    }
+    
+
+}

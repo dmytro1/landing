@@ -1,0 +1,68 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "7ad2cc09a9c7302d9eda70b7fbcc0c81",
+    "packages": [
+        {
+            "name": "redink-no/wpkit",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/redink-no/wpkit.git",
+                "reference": "eeb748cd4f07ce982865aeb6bda97e061b563eeb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/redink-no/wpkit/zipball/eeb748cd4f07ce982865aeb6bda97e061b563eeb",
+                "reference": "eeb748cd4f07ce982865aeb6bda97e061b563eeb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WPKit\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Oleksandr Strikha",
+                    "email": "alex@pingbull.no"
+                },
+                {
+                    "name": "Vitaly Nikolaev",
+                    "email": "vitaly@pingbull.no"
+                },
+                {
+                    "name": "Viktor Kuliebiakin",
+                    "email": "victor@pingbull.no"
+                }
+            ],
+            "description": "Object-oriented development framework for WordPress",
+            "keywords": [
+                "wordpress",
+                "wpkit"
+            ],
+            "time": "2017-12-21T15:02:19+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "redink-no/wpkit": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
