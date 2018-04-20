@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+.idea/
+*.log
+composer.lock
+package-lock.json
+composer.phar
+cache
+node_modules/
+/vendor
+/gulp
