@@ -97,9 +97,9 @@ export default ($) => {
 
         let priceTag = document.getElementById(clickedElementDataId + '-price');
         let price = priceTag.getAttribute('data-price');
-
+        let randomId = Math.trunc((Math.random()*100000));
         let productData = {
-            "title": title + ' [' + clickedElementDataId + ']',
+            "title": title + ' [' + randomId + ']',
             "content": JSON.stringify(userChoice) + '{"price":' + price + '}',
             "status": 'publish'
         };
