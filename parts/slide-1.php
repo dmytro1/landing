@@ -38,7 +38,7 @@
                                         name="<?= $term->slug ?>"
                                         id="<?= get_the_ID() . '-' . $term->slug ?>"
                                         data="<?= get_the_ID() ?>">
-                                    <option value=""><?= $term->name ?></option>
+                                    <option value="">- Select <?= $term->name ?> -</option>
 									<?php foreach ( $options = Product::get_options( $term->term_id ) as $option ) : ?>
                                         <option value="<?= strtolower( preg_replace( '/\s+/', '', $option ) ) ?>"><?= trim( $option ) ?></option>
 									<?php endforeach; ?>

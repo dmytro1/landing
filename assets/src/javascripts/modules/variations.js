@@ -37,6 +37,7 @@ export default ($) => {
         for (let parameter in userChoice) {
             if (userChoice[parameter] === "") {
                 printPrice.setAttribute('data-price', '');
+                printPrice.innerHTML = "&nbsp;";
                 console.log('Select the ' + parameter);
                 printMessage.innerHTML = 'Select the ' + parameter;
                 checkoutButton.disabled = true;
@@ -81,7 +82,6 @@ export default ($) => {
 
 //Create new post
     window.addToCart = function (el) {
-        event.preventDefault();
 
         if (el.classList.contains('disabled')) {
             return;
@@ -116,6 +116,8 @@ export default ($) => {
         productData['info_phone'] = inputPhone.value;
 
         console.log(productData);
+
+        event.preventDefault();
 
         let createPost = new XMLHttpRequest();
         createPost.open('POST', location.origin + '/wp-json/wp/v2/shop_order', true);

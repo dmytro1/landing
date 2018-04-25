@@ -21,6 +21,12 @@ class Initialization extends AbstractModuleInitialization {
 	const TAX_NAME = 'parameter';
 	const VARIATION_META = 'variations';
 
+	public function add_action_admin_enqueue_scripts() {
+		if ( get_post_type() == Initialization::POST_TYPE ) {
+			wp_enqueue_script( 'admin-js', get_template_directory_uri() . '/admin/js/admin.js' );
+		}
+	}
+
 	public function register_post_type() {
 		$post_type = new PostType( self::POST_TYPE, 'Product', [ 'menu_name' => 'Products' ] );
 		$post_type->set_menu_icon( 'dashicons-list-view' );

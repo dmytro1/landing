@@ -455,7 +455,7 @@ svg path {
 }
 
 .error-message {
-    height: 10px;
+    padding: 10px 0;
     color: rgba(206,21,68,1);
 }
 
