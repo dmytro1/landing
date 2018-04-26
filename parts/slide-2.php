@@ -29,7 +29,7 @@
                             <span class="input-group-addon"><span
                                         class="glyphicon glyphicon-chevron-right"></span></span>
                             <input type="text" name="first_name" class="form-control input-design" minlength="3"
-                                   placeholder="First Name" required>
+                                   placeholder="First Name" autocomplete="first_name" required>
                         </div>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
@@ -39,7 +39,7 @@
                             <span class="input-group-addon"><span
                                         class="glyphicon glyphicon-chevron-right"></span></span>
                             <input type="text" name="last_name" class="form-control input-design" minlength="3"
-                                   placeholder="Last Name" required>
+                                   placeholder="Last Name" autocomplete="last_name" required>
                         </div>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
@@ -49,7 +49,7 @@
                             <span class="input-group-addon"><span
                                         class="glyphicon glyphicon-chevron-right"></span></span>
                             <input type="email" name="email" class="form-control input-design"
-                                   placeholder="Email Address" required>
+                                   placeholder="Email Address" autocomplete="email" required>
                         </div>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
@@ -59,16 +59,16 @@
                             <span class="input-group-addon"><span
                                         class="glyphicon glyphicon-chevron-right"></span></span>
                             <input type="number" name="phone" class="form-control input-design"
-                                   placeholder="Phone number" required>
+                                   placeholder="Phone number" autocomplete="phone" required>
                         </div>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group col-sm-12">
                         <button type="submit"
+                                href="#carousel-<?= $post->carousel_counter ?>"
                                 onclick="addToCart(this)"
                                 data-attr="<?= get_the_ID() ?>"
-                                data-toggle="modal"
                                 name="<?= get_page_uri(); ?>"
                                 class="btn btn-primary" style="float: right">Order</button>
                     </div>

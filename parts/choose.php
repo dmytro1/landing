@@ -22,11 +22,13 @@
                         <ol class="carousel-indicators" style="color: #000;">
                             <li data-target="#carousel-<?= $i ?>" class="active"></li>
                             <li data-target="#carousel-<?= $i ?>"></li>
+                            <li data-target="#carousel-<?= $i ?>"></li>
                         </ol> <!-- Wrapper for slides -->
                         <div class="container">
                             <div class="carousel-inner" style="">
 								<?php get_template_part( 'parts/slide-1' ) ?>
 								<?php get_template_part( 'parts/slide-2' ) ?>
+								<?php get_template_part( 'parts/slide-3' ) ?>
                             </div>
                         </div>
 

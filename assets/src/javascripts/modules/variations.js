@@ -88,6 +88,8 @@ export default ($) => {
         }
 
         let clickedElementDataId = el.getAttribute('data-attr');
+        let elementHref = el.getAttribute('href');
+        let userOrderText = $('#section-' + clickedElementDataId + ' .user-order');
         let inputName = $('#form-' + clickedElementDataId + ' input[name="first_name"]');
         let inputLastName = $('#form-' + clickedElementDataId + ' input[name="last_name"]');
         let inputEmail = $('#form-' + clickedElementDataId + ' input[name="email"]');
@@ -117,6 +119,16 @@ export default ($) => {
 
         console.log(productData);
 
+        let content = '';
+
+        for (let i in userChoice) {
+            content += "<p>" + i + ": " + userChoice[i] + "</p>";
+        }
+        content += "<p>Price: " + productData.param_price + "</p>";
+        content += "<p>First name: " + productData.info_first_name + "</p>";
+        content += "<p>Last name: " + productData.info_last_name + "</p>";
+        content += "<p>Phone: " + productData.info_phone + "</p>";
+
         event.preventDefault();
 
         let createPost = new XMLHttpRequest();
@@ -132,11 +144,15 @@ export default ($) => {
             console.log(this.status);
             if (this.status !== 201) {
                 console.log('Not 201: ' + this.status + ' ' + this.statusText);
+                alert('Not 201: ' + this.status + ' ' + this.statusText);
                 return;
             }
 
             if (this.readyState === 4) {
                 if (this.status === 201) {
+                    content += '<br>' + this.statusText + ' status: post added';
+                    jQuery(elementHref).carousel('next');
+                    userOrderText.innerHTML = content;
                     console.log(this.statusText + ' status: post added');
                     alert(this.statusText + ' status: post added');
                 }
