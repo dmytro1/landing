@@ -78,7 +78,9 @@ class Functions extends AbstractFunctions {
 		return $prices;
 	}
 
-	public static function get_product_variations_by_id() {
+	public static function get_product_variations_by_id( $id = null ) {
+		global $post;
+		$tmp_post = $post;
 		$result   = [];
 		$products = self::get_products();
 		while ( $products->have_posts() ) {
@@ -91,9 +93,13 @@ class Functions extends AbstractFunctions {
 
 			//$ids[] = get_the_ID();
 		}
-		wp_reset_postdata();
+//		wp_reset_postdata();
+		$post = $tmp_post;
+		if ( is_null( $id ) ) {
+			return $result;
+		}
 
-		return $result;
+		return isset( $result[ $id ] ) ? $result[ $id ] : [];
 	}
 
 	public static function get_products_terms() {
@@ -143,5 +149,25 @@ class Functions extends AbstractFunctions {
 		$options       = explode( "\n", $options_field );
 
 		return $options;
+	}
+
+	public static function is_disabled( $option ) {
+		$variations = self::get_product_variations_by_id( get_the_ID() );
+		$option     = trim( strtolower( $option ) );
+
+		$result = false;
+
+		foreach ( $variations as $variation ) {
+			$search = array_search( $option, $variation );
+			if ( $search ) {
+				return '';
+			} else {
+				$result = true;
+			}
+		}
+
+		if ( $result ) {
+			return 'disabled';
+		}
 	}
 }

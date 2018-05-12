@@ -40,7 +40,8 @@
                                         data="<?= get_the_ID() ?>">
                                     <option value="">- Select <?= $term->name ?> -</option>
 									<?php foreach ( $options = Product::get_options( $term->term_id ) as $option ) : ?>
-                                        <option value="<?= strtolower( preg_replace( '/\s+/', '', $option ) ) ?>"><?= trim( $option ) ?></option>
+                                        <option <?= Product::is_disabled( $option ) ?>
+                                                value="<?= strtolower( preg_replace( '/\s+/', '', $option ) ) ?>"><?= trim( $option ) ?></option>
 									<?php endforeach; ?>
                                 </select>
                             </div>
