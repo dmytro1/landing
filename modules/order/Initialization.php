@@ -43,7 +43,9 @@ class Initialization extends AbstractModuleInitialization {
 
 	public function register_metabox() {
 		$metabox = new MetaBox( 'param', 'Parameters' );
-		foreach ( $terms = \modules\product\Functions::get_terms() as $term ) {
+		$terms   = \modules\product\Functions::get_terms();
+		$terms   = $terms ? $terms : [];
+		foreach ( $terms as $term ) {
 			$metabox->add_field( $term->slug, $term->name );
 		}
 

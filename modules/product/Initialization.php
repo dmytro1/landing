@@ -35,6 +35,7 @@ class Initialization extends AbstractModuleInitialization {
 		$post_type->set_show_in_rest( true );
 		$this->add_parameters_taxonomy( self::POST_TYPE );
 		$this->add_parameters_metabox( self::POST_TYPE );
+		$this->add_gallery_metabox( self::POST_TYPE );
 	}
 
 	public function add_parameters_metabox( $post_type ) {
@@ -63,6 +64,14 @@ class Initialization extends AbstractModuleInitialization {
 		}
 		$metabox->add_post_type( $post_type );
 		$metabox_price->add_post_type( $post_type );
+	}
+
+	public function add_gallery_metabox( $post_type ) {
+		$gallery = new MetaBox( 'gallery', 'Gallery' );
+		$gallery->add_field( 'image1', 'Image 1', 'Image' );
+		$gallery->add_field( 'image2', 'Image 2', 'Image' );
+		$gallery->add_field( 'image3', 'Image 3', 'Image' );
+		$gallery->add_post_type( $post_type );
 	}
 
 	public function add_parameters_taxonomy( $post_type ) {

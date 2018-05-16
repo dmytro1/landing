@@ -170,4 +170,16 @@ class Functions extends AbstractFunctions {
 			return 'disabled';
 		}
 	}
+
+	public static function get_gallery_images() {
+		$images = [];
+		for ( $i = 1; $i <= 3; $i ++ ) {
+			$image = MetaBox::get( get_the_ID(), 'gallery', 'image' . $i );
+			if ( ! empty( $image ) ) {
+				$images[] = $image;
+			}
+		}
+
+		return $images;
+	}
 }

@@ -7,21 +7,16 @@ export default () => {
         'use strict';
 
         //=== Private Variables ===//
-        var gallery = $('#js-gallery');
+        var gallery = $('.gallery');
 
         //=== Gallery Object ===//
         var Gallery = {
             zoom: function (imgContainer, img) {
                 var containerHeight = imgContainer.outerHeight(),
                     src = img.attr('src');
-
-                if (src.indexOf('/products/normal/') != -1) {
+                if (!gallery.hasClass('is-zoomed')) {
                     // Set height of container
                     imgContainer.css("height", containerHeight);
-
-
-                    // Switch hero image src with large version
-                    img.attr('src', src.replace('/products/normal/', '/products/zoom/'));
 
                     // Add zoomed class to gallery container
                     gallery.addClass('is-zoomed');
@@ -36,9 +31,6 @@ export default () => {
                 } else {
                     // Ensure height of container fits image
                     imgContainer.css("height", "auto");
-
-                    // Switch hero image src with normal version
-                    img.attr('src', src.replace('/products/zoom/', '/products/normal/'));
 
                     // Remove zoomed class to gallery container
                     gallery.removeClass('is-zoomed');

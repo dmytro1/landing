@@ -10,8 +10,6 @@
     <div class="row">
         <div id="js-product-info" class="product-info">
             <div class="col-md-6 product_img">
-                <img src="<?= get_the_post_thumbnail_url(); ?>"
-                     class="product-img img-responsive" style="max-height: 220px;">
 	            <?php get_template_part( 'parts/gallery' ) ?>
             </div>
             <div class="col-md-6 product_content">
