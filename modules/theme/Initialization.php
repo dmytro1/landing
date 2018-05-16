@@ -23,6 +23,7 @@ class Initialization extends AbstractThemeInitialization {
 		wp_enqueue_script( 'bootstrap-js', self::get_path_to_libs() . 'bootstrap.min.js', [ 'jquery' ], '', true );
 		wp_enqueue_script( 'validator-js', self::get_path_to_libs() . 'validator.js', [ 'jquery' ], '', true );
 		wp_enqueue_script( 'site-js', self::get_path_to_built() . 'javascripts/common.js', [], '', true );
+		wp_enqueue_script( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js', [], '', true );
 //		wp_enqueue_script( 'validation-js', get_template_directory_uri() . '/assets/js/validation.js', [], '', true );
 //		wp_register_script( 'variations-js', get_template_directory_uri() . '/assets/js/variations.js', [], '', true );
 

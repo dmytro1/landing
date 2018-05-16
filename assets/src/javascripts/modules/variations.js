@@ -87,6 +87,10 @@ export default ($) => {
             return;
         }
 
+        jQuery('html, body').animate({
+            scrollTop: $("#choose").offsetTop - 50
+        }, 100);
+
         let clickedElementDataId = el.getAttribute('data-attr');
         let elementHref = el.getAttribute('href');
         let userOrderText = $('#section-' + clickedElementDataId + ' .user-order');

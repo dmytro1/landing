@@ -58,6 +58,7 @@ export default ($, $$) => {
     };
 
     window.checkoutBtn = function (el) {
+        scrollElem();
 
         let dataID = el.getAttribute('data-checkout');
         let userChoiceText = $('#section-' + dataID + ' .user-choice');
@@ -69,6 +70,12 @@ export default ($, $$) => {
         content += "<p>Price: " + choicePrice;
         userChoiceText.innerHTML = content;
     };
+    
+    function scrollElem() {
+        jQuery('html, body').animate({
+            scrollTop: $("#choose").offsetTop - 50
+        }, 100);
+    }
 
     window.on('DOMContentLoaded', function () {
         setNavStyle();
@@ -141,6 +148,10 @@ export default ($, $$) => {
                 sections[i].classList.remove('showing');
             }
             this.classList.remove('showing');
+        });
+
+        jQuery('[data-slide="prev"]').click(function () {
+            scrollElem();
         });
     });
 };

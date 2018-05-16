@@ -21,6 +21,7 @@ import main from "./modules/main";
 import popup from "./modules/popup";
 import variations from "./modules/variations";
 import validation from "./modules/validation";
+import gallery from "./modules/gallery";
 
 
 // import "./plugins/infinite-scroll";
@@ -30,4 +31,5 @@ jQuery(function () {
     popup();
     variations($);
     validation();
+    gallery();
 });
