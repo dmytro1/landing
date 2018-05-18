@@ -1,27 +1,16 @@
 import $ from "jquery";
 
 export default () => {
-    var App = (function () {
 
-        //=== Use Strict ===//
-        'use strict';
-
-        //=== Private Variables ===//
-        var gallery = $('.gallery');
-
-        //=== Gallery Object ===//
-        var Gallery = {
-            zoom: function (imgContainer, img) {
-                var containerHeight = imgContainer.outerHeight(),
-                    src = img.attr('src');
+    let App = (function () {
+        let gallery = $('.gallery');
+        let Gallery = {
+            zoom: function (imgContainer, img, gallery) {
+                let containerHeight = imgContainer.outerHeight();
                 if (!gallery.hasClass('is-zoomed')) {
-                    // Set height of container
                     imgContainer.css("height", containerHeight);
-
-                    // Add zoomed class to gallery container
                     gallery.addClass('is-zoomed');
 
-                    // Enable image to be draggable
                     img.draggable({
                         drag: function (event, ui) {
                             ui.position.left = Math.min(100, ui.position.left);
@@ -29,29 +18,23 @@ export default () => {
                         }
                     });
                 } else {
-                    // Ensure height of container fits image
                     imgContainer.css("height", "auto");
-
-                    // Remove zoomed class to gallery container
                     gallery.removeClass('is-zoomed');
                 }
             },
-            switch: function (trigger, imgContainer) {
-                var src = trigger.attr('href'),
+            switch: function (trigger, imgContainer, gallery) {
+                let src = trigger.attr('href'),
                     thumbs = trigger.siblings(),
                     img = trigger.parent().prev().children();
 
-                // Add active class to thumb
                 trigger.addClass('is-active');
 
-                // Remove active class from thumbs
                 thumbs.each(function () {
                     if ($(this).hasClass('is-active')) {
                         $(this).removeClass('is-active');
                     }
                 });
 
-                // Reset container if in zoom state
                 if (gallery.hasClass('is-zoomed')) {
                     gallery.removeClass('is-zoomed');
                     imgContainer.css("height", "auto");
@@ -63,34 +46,31 @@ export default () => {
         };
 
         //=== Public Methods ===//
-        function init() {
-
-            // Listen for clicks on anchors within gallery
-            gallery.delegate('a', 'click', function (event) {
-                var trigger = $(this);
-                var triggerData = trigger.data("gallery");
+        function initHandler() {
+            gallery.on('click', 'a', function (event) {
+                let trigger = $(this);
+                let triggerData = trigger.data("gallery");
+                let galleryId = event.delegateTarget.id;
+                gallery = $('#' + galleryId);
 
                 if (triggerData === 'zoom') {
-                    var imgContainer = trigger.parent(),
+                    let imgContainer = trigger.parent(),
                         img = trigger.siblings();
-                    Gallery.zoom(imgContainer, img);
+                    Gallery.zoom(imgContainer, img, gallery);
                 } else if (triggerData === 'thumb') {
-                    var imgContainer = trigger.parent().siblings();
-                    Gallery.switch(trigger, imgContainer);
+                    let imgContainer = trigger.parent().siblings();
+                    Gallery.switch(trigger, imgContainer, gallery);
                 } else {
                     return;
                 }
-
                 event.preventDefault();
             });
-
         }
 
         //=== Make Methods Public ===//
         return {
-            init: init
+            init: initHandler
         };
-
     })();
 
     App.init();

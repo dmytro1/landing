@@ -6,7 +6,7 @@
  * Time: 23:24
  */ ?>
 
-<div class="gallery">
+<div class="gallery" id="gallery-<?= $post->carousel_counter ?>">
     <div class="gallery__hero">
         <a href="" class="gallery__hero-enlarge ir" data-gallery="zoom">Zoom</a>
         <img src="<?= get_the_post_thumbnail_url() ?>">
