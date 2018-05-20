@@ -92,6 +92,7 @@ export default ($) => {
         }, 100);
 
         let clickedElementDataId = el.getAttribute('data-attr');
+        let quantity = $('#section-' + clickedElementDataId + ' .quantity');
         let elementHref = el.getAttribute('href');
         let userOrderText = $('#section-' + clickedElementDataId + ' .user-order');
         let inputName = $('#form-' + clickedElementDataId + ' input[name="first_name"]');
@@ -106,7 +107,7 @@ export default ($) => {
         let randomId = Math.trunc((Math.random() * 100000));
         let productData = {
             "title": title + ' [' + randomId + ']',
-            "content": JSON.stringify(userChoice) + '{"price":' + price + '}',
+            "content": JSON.stringify(userChoice) + '{"price":' + price + ', "quantity":' + quantity.value + '}',
             "status": 'publish'
         };
 
@@ -115,7 +116,7 @@ export default ($) => {
         }
 
         productData['param_price'] = price;
-
+        productData['param_quantity'] = quantity.value;
         productData['info_first_name'] = inputName.value;
         productData['info_last_name'] = inputLastName.value;
         productData['info_email'] = inputEmail.value;
@@ -129,6 +130,8 @@ export default ($) => {
             content += "<p>" + i + ": " + userChoice[i] + "</p>";
         }
         content += "<p>Price: " + productData.param_price + "</p>";
+        content += "<p>Quantity: " + quantity.value + "</p>";
+        content += "<p>Total price: " + (quantity.value * productData.param_price) + "</p>";
         content += "<p>First name: " + productData.info_first_name + "</p>";
         content += "<p>Last name: " + productData.info_last_name + "</p>";
         content += "<p>Phone: " + productData.info_phone + "</p>";

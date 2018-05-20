@@ -10,6 +10,7 @@
     }
   ],
   "require": {
-    "redink-no/wpkit": "dev-develop"
+    "redink-no/wpkit": "dev-develop",
+    "mobiledetect/mobiledetectlib": "2.8.31"
   }
 }

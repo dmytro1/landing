@@ -61,6 +61,7 @@ export default ($, $$) => {
         scrollElem();
 
         let dataID = el.getAttribute('data-checkout');
+        let quantity = $('#section-' + dataID + ' .quantity');
         let userChoiceText = $('#section-' + dataID + ' .user-choice');
         let choicePrice = document.getElementById(dataID + '-price').getAttribute('data-price');
         let content = '';
@@ -68,6 +69,7 @@ export default ($, $$) => {
             content += "<p>" + i + ": " + userChoice[i] + "</p>";
         }
         content += "<p>Price: " + choicePrice;
+        content += "<p>Quantity: " + quantity.value;
         userChoiceText.innerHTML = content;
     };
     

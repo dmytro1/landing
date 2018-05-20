@@ -38,6 +38,7 @@ class Initialization extends AbstractModuleInitialization {
 	public function add_action_add_meta_boxes() {
 		add_meta_box( 'test', 'Order Info', function () {
 			var_dump( Functions::get_meta() );
+			var_dump( 'Quantity => ' . MetaBox::get( get_the_ID(), 'param', 'quantity' ) );
 		}, self::POST_TYPE );
 	}
 
@@ -48,6 +49,7 @@ class Initialization extends AbstractModuleInitialization {
 		foreach ( $terms as $term ) {
 			$metabox->add_field( $term->slug, $term->name );
 		}
+		$metabox->add_field( 'quantity', 'Quantity' );
 
 		$metabox->add_post_type( self::POST_TYPE );
 	}
@@ -87,6 +89,11 @@ class Initialization extends AbstractModuleInitialization {
 				'update_callback' => $add_post_meta,
 			] );
 		}
+
+		register_rest_field( self::POST_TYPE, 'param_quantity', [
+			'get_callback'    => $show_in_rest,
+			'update_callback' => $add_post_meta,
+		] );
 
 	}
 

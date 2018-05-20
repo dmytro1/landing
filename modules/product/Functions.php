@@ -52,7 +52,8 @@ class Functions extends AbstractFunctions {
 
 	public static function output_price_message() {
 		if ( ! empty( $min_price = self::get_minimum_var_price() ) ) {
-			return '<p>from <span class="red-price">' . $min_price . '$</span></p>';
+			return '<h3><span style="font-size: 12px; color: #82898f; font-weight: 300;
+    font-style: italic;">from</span> <span class="red-price">' . $min_price . '$</span></h3>';
 		} elseif ( $static_price = self::get_static_price() ) {
 			return '<h3><span class="red-price">' . $static_price . '$</span></h3>';
 		} else {

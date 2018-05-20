@@ -3,6 +3,7 @@
 namespace modules\theme;
 
 
+use Detection\MobileDetect;
 use modules\theme\classes\Topbar_Menu_Walker;
 use WPKit\AdminPage\OptionPage;
 use WPKit\Module\AbstractFunctions;
@@ -43,5 +44,11 @@ class Functions extends AbstractFunctions {
 
 			return $logo_url;
 		}
+	}
+
+	public static function is_mobile() {
+		$detect = new MobileDetect();
+
+		return $detect->isMobile() ? $detect->isMobile() : false;
 	}
 }

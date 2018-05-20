@@ -31,7 +31,7 @@
 							if ( $term->slug === 'price' ) {
 								continue;
 							} ?>
-                            <div class="col-sm-6 col-xs-6">
+                            <div class="form-group col-sm-6 col-xs-6">
                                 <select class="form-control input-design"
                                         onchange="selectOnClick(this)"
                                         name="<?= $term->slug ?>"
@@ -46,6 +46,11 @@
                             </div>
 						<?php endforeach; ?>
 					<?php endif; ?>
+                    <div class="form-group col-sm-6 col-xs-6">
+                        <label for="">Quantity</label>
+                        <input type="number" name="quantity" class="form-control quantity input-design"
+                               placeholder="Quantity" min="1" autocomplete="quantity" value="1" required>
+                    </div>
                 </div>
 	            <?php if ( ! empty( Product::get_product_variations() ) ) : ?>
                     <p class="error-message" id="message-<?= get_the_ID() ?>"></p>

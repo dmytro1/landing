@@ -8,7 +8,9 @@
 
 <div class="gallery" id="gallery-<?= $post->carousel_counter ?>">
     <div class="gallery__hero">
-        <a href="" class="gallery__hero-enlarge ir" data-gallery="zoom">Zoom</a>
+		<?php if ( ! Theme::is_mobile() ) : ?>
+            <a href="" class="gallery__hero-enlarge ir" data-gallery="zoom">Zoom</a>
+		<?php endif; ?>
         <img src="<?= get_the_post_thumbnail_url() ?>">
     </div>
     <div class="gallery__thumbs">
@@ -17,13 +19,13 @@
             <img src="<?= get_the_post_thumbnail_url() ?>">
         </a>
 		<?php $gallery = Product::get_gallery_images();
-		if ( $gallery ) {
-			foreach ( $gallery as $image ) { ?>
+		if ( $gallery ) :
+			foreach ( $gallery as $image ) : ?>
                 <a href="<?= wp_get_attachment_image_src( $image, 'full' )[0] ?>"
                    data-gallery="thumb">
 					<?= wp_get_attachment_image( $image, 'full' ) ?>
                 </a>
-			<?php } ?>
-		<?php } ?>
+			<?php endforeach; ?>
+		<?php endif; ?>
     </div>
 </div>
