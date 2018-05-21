@@ -20,9 +20,9 @@
                     <div id="carousel-<?= $i ?>" class="carousel slide" data-ride="carousel" data-interval="false">
                         <!-- Indicators -->
                         <ol class="carousel-indicators" style="color: #000;">
-                            <li data-target="#carousel-<?= $i ?>" class="active"></li>
-                            <li data-target="#carousel-<?= $i ?>"></li>
-                            <li data-target="#carousel-<?= $i ?>"></li>
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
                         </ol> <!-- Wrapper for slides -->
                         <div class="container">
                             <div class="carousel-inner" style="">

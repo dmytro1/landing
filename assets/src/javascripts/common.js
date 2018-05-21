@@ -18,18 +18,18 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn
 //export {$, $$};
 
 import main from "./modules/main";
-import popup from "./modules/popup";
+import toggleChooseSections from "./modules/toggleChooseSections";
+import checkoutBtn from "./modules/checkoutBtn";
 import variations from "./modules/variations";
 import validation from "./modules/validation";
 import gallery from "./modules/gallery";
 
 
-// import "./plugins/infinite-scroll";
-
 jQuery(function () {
     main($, $$);
-    popup();
+    toggleChooseSections($, $$);
+    checkoutBtn($);
     variations($);
-    validation();
+    validation($);
     gallery();
 });

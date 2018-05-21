@@ -55,7 +55,7 @@
 	            <?php if ( ! empty( Product::get_product_variations() ) ) : ?>
                     <p class="error-message" id="message-<?= get_the_ID() ?>"></p>
 	            <?php endif; ?>
-                <button onclick="checkoutBtn(this)" data-checkout="<?= get_the_ID() ?>" class="btn btn-primary"
+                <button onclick="checkoutBtn(this)" data-id="<?= get_the_ID() ?>" class="btn btn-primary"
                         href="#carousel-<?= $post->carousel_counter ?>"
                         data-slide="next" <?php if ( ! empty( Product::get_product_variations() ) ) {
 		            echo 'disabled';

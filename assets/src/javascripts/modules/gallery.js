@@ -1,77 +1,64 @@
 import $ from "jquery";
 
 export default () => {
+    let Gallery = {
+        zoom: function (imgContainer, img, gallery) {
+            let containerHeight = imgContainer.outerHeight();
+            if (!gallery.hasClass('is-zoomed')) {
+                imgContainer.css("height", containerHeight);
+                gallery.addClass('is-zoomed');
 
-    let App = (function () {
-        let gallery = $('.gallery');
-        let Gallery = {
-            zoom: function (imgContainer, img, gallery) {
-                let containerHeight = imgContainer.outerHeight();
-                if (!gallery.hasClass('is-zoomed')) {
-                    imgContainer.css("height", containerHeight);
-                    gallery.addClass('is-zoomed');
-
-                    img.draggable({
-                        drag: function (event, ui) {
-                            ui.position.left = Math.min(100, ui.position.left);
-                            ui.position.top = Math.min(100, ui.position.top);
-                        }
-                    });
-                } else {
-                    imgContainer.css("height", "auto");
-                    gallery.removeClass('is-zoomed');
-                }
-            },
-            switch: function (trigger, imgContainer, gallery) {
-                let src = trigger.attr('href'),
-                    thumbs = trigger.siblings(),
-                    img = trigger.parent().prev().children();
-
-                trigger.addClass('is-active');
-
-                thumbs.each(function () {
-                    if ($(this).hasClass('is-active')) {
-                        $(this).removeClass('is-active');
+                img.draggable({
+                    drag: function (event, ui) {
+                        ui.position.left = Math.min(100, ui.position.left);
+                        ui.position.top = Math.min(100, ui.position.top);
                     }
                 });
-
-                if (gallery.hasClass('is-zoomed')) {
-                    gallery.removeClass('is-zoomed');
-                    imgContainer.css("height", "auto");
-                }
-
-                // Switch image source
-                img.attr('src', src);
+            } else {
+                imgContainer.css("height", "auto");
+                gallery.removeClass('is-zoomed');
             }
-        };
+        },
+        switch: function (trigger, imgContainer, gallery) {
+            let src = trigger.attr('href'),
+                thumbs = trigger.siblings(),
+                img = trigger.parent().prev().children();
 
-        //=== Public Methods ===//
-        function initHandler() {
-            gallery.on('click', 'a', function (event) {
-                let trigger = $(this);
-                let triggerData = trigger.data("gallery");
-                let galleryId = event.delegateTarget.id;
-                gallery = $('#' + galleryId);
+            trigger.addClass('is-active');
 
-                if (triggerData === 'zoom') {
-                    let imgContainer = trigger.parent(),
-                        img = trigger.siblings();
-                    Gallery.zoom(imgContainer, img, gallery);
-                } else if (triggerData === 'thumb') {
-                    let imgContainer = trigger.parent().siblings();
-                    Gallery.switch(trigger, imgContainer, gallery);
-                } else {
-                    return;
+            thumbs.each(function () {
+                if ($(this).hasClass('is-active')) {
+                    $(this).removeClass('is-active');
                 }
-                event.preventDefault();
             });
+
+            if (gallery.hasClass('is-zoomed')) {
+                gallery.removeClass('is-zoomed');
+                imgContainer.css("height", "auto");
+            }
+
+            // Switch image source
+            img.attr('src', src);
         }
+    };
 
-        //=== Make Methods Public ===//
-        return {
-            init: initHandler
-        };
-    })();
+    let gallery = $('.gallery');
+    gallery.on('click', 'a', function (event) {
+        let trigger = $(this);
+        let triggerData = trigger.data("gallery");
+        let galleryId = event.delegateTarget.id;
+        gallery = $('#' + galleryId);
 
-    App.init();
+        if (triggerData === 'zoom') {
+            let imgContainer = trigger.parent(),
+                img = trigger.siblings();
+            Gallery.zoom(imgContainer, img, gallery);
+        } else if (triggerData === 'thumb') {
+            let imgContainer = trigger.parent().siblings();
+            Gallery.switch(trigger, imgContainer, gallery);
+        } else {
+            return;
+        }
+        event.preventDefault();
+    });
 };
