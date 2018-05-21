@@ -15,7 +15,7 @@
 
 <?php get_template_part( 'parts/how-it-works' ); ?>
 
-<?php get_template_part( 'parts/about' ); ?>
+<?php //get_template_part( 'parts/about' ); ?>
 
 <?php get_template_part( 'parts/buy-section' ); ?>
 

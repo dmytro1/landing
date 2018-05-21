@@ -1,16 +1,10 @@
 {
-  "name": "vendor_name/package_name",
-  "description": "description_text",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "Dmytro",
-      "email": "email@example.com"
-    }
-  ],
   "require": {
     "redink-no/wpkit": "dev-develop",
     "mobiledetect/mobiledetectlib": "2.8.31"
+  },
+  "config": {
+    "disable-tls" : true,
+    "secure-http" : false
   }
 }

@@ -72,7 +72,7 @@
         },
         "time": "2018-02-26T19:39:55+00:00",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "classmap": [
                 "Mobile_Detect.php"

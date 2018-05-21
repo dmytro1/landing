@@ -26,9 +26,9 @@
                         </ol> <!-- Wrapper for slides -->
                         <div class="container">
                             <div class="carousel-inner" style="">
-								<?php get_template_part( 'parts/slide-1' ) ?>
-								<?php get_template_part( 'parts/slide-2' ) ?>
-								<?php get_template_part( 'parts/slide-3' ) ?>
+								<?php get_template_part( 'parts/choose/slide-1' ) ?>
+								<?php get_template_part( 'parts/choose/slide-2' ) ?>
+								<?php get_template_part( 'parts/choose/slide-3' ) ?>
                             </div>
                         </div>
 

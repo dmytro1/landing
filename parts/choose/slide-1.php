@@ -10,7 +10,7 @@
     <div class="row">
         <div id="js-product-info" class="product-info">
             <div class="col-md-6 product_img">
-	            <?php get_template_part( 'parts/gallery' ) ?>
+	            <?php get_template_part( 'parts/choose/gallery' ) ?>
             </div>
             <div class="col-md-6 product_content">
                 <h3 id="<?= get_page_uri(); ?>"><?= get_the_title(); ?>
