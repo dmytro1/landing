@@ -1,8 +1,9 @@
 export default ($, $$) => {
     window.toggleChooseSections = function (el) {
-        $('.close-btn').classList.add('showing');
+        let closeBtn = $('.close-btn');
+        closeBtn.classList.add('showing');
         if ($$('.collapse-section.showing').length) {
-            $('.close-btn').classList.remove('showing');
+            closeBtn.classList.remove('showing');
         }
 
         let dataID = el.getAttribute('data-id');
@@ -15,7 +16,7 @@ export default ($, $$) => {
         }
         section.classList.toggle('showing');
         if ($$('.collapse-section.showing').length) {
-            $('.close-btn').classList.add('showing');
+            closeBtn.classList.add('showing');
         }
     };
 }

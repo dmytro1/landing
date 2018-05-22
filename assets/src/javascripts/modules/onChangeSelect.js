@@ -33,7 +33,7 @@ export default ($) => {
         let checkoutButton = $("#section-" + dataID + " button[data-slide='next']");
 
         for (let parameter in userChoice) {
-            if (userChoice[parameter] === "") {
+            if (userChoice.hasOwnProperty(parameter) && userChoice[parameter] === "") {
                 printPrice.setAttribute('data-price', '');
                 printPrice.innerHTML = "&nbsp;";
                 console.log('Select the ' + parameter);
@@ -53,7 +53,9 @@ export default ($) => {
             let variationsWithoutPrice = {};
 
             for (let parameter in variation) {
-                variationsWithoutPrice[parameter] = variation[parameter];
+                if (variation.hasOwnProperty(parameter)) {
+                    variationsWithoutPrice[parameter] = variation[parameter];
+                }
             }
 
             delete variationsWithoutPrice.price;

@@ -9,6 +9,7 @@ Node.prototype.on = window.on = function (name, fn) {
 
 NodeList.prototype.__proto__ = Array.prototype; // eslint-disable-line
 NodeList.prototype.__proto__ = Document.prototype;
+//NodeList.prototype.__proto__ = jQuery.prototype.animate();
 
 NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
     this.forEach((elem) => {

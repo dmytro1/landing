@@ -1,6 +1,6 @@
 export default ($) => {
     window.addOrder = function (el) {
-
+        let userChoice = window.userChoice;
         if (el.classList.contains('disabled')) {
             return;
         }

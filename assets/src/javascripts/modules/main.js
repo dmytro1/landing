@@ -1,5 +1,3 @@
-// import $ from "jquery";
-
 export default ($, $$) => {
 
     window.MainMethods = {
@@ -30,8 +28,9 @@ export default ($, $$) => {
             }
         },
         navbarToFloat: function () {
-            $('.navbar-default').style.backgroundColor = 'rgba(48, 48, 48, 0.5)';
-            $('.navbar-default').classList.add('top-nav-collapse');
+            let navbar = $('.navbar-default');
+            navbar.style.backgroundColor = 'rgba(48, 48, 48, 0.5)';
+            navbar.classList.add('top-nav-collapse');
             $('.navbar-brand img').classList.add('img_responsive');
             let menuItem = $$('.navbar-nav a');
             for (let i = 0; i < menuItem.length; i++) {
