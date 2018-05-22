@@ -1,108 +1,23 @@
-// import $ from "jquery";
-
 export default ($) => {
-    window.userChoice = {};
-
-    window.selectOnClick = function (el) {
-
-        let clickedElementDataId = el.getAttribute('data');
-        let allSelects = document.querySelectorAll('[data]');
-
-        for (let i in allSelects) {
-
-            if (isNaN(i)) {
-                continue;
-            }
-
-            let itemSelect = allSelects[i];
-            let selectData = itemSelect.attributes.data.value;
-
-            if (selectData === clickedElementDataId) {
-                userChoice[itemSelect.name] = itemSelect.options[itemSelect.selectedIndex].value;
-            }
-        }
-
-        console.log('This is user choice');
-        console.log(userChoice);
-
-        compare(userChoice, clickedElementDataId);
-    };
-
-    function compare(userChoice, dataID) {
-
-        let printPrice = document.getElementById(dataID + '-price');
-        let printMessage = $('#message-' + dataID);
-        let checkoutButton = $("#section-" + dataID + " button[data-slide='next']");
-
-        for (let parameter in userChoice) {
-            if (userChoice[parameter] === "") {
-                printPrice.setAttribute('data-price', '');
-                printPrice.innerHTML = "&nbsp;";
-                console.log('Select the ' + parameter);
-                printMessage.innerHTML = 'Select the ' + parameter;
-                checkoutButton.disabled = true;
-                return;
-            }
-        }
-
-        let variations = variationsObject.dataById[dataID];
-
-        console.log('This is Variations');
-        console.log(variations);
-
-        for (let i in variations) {
-            let variation = variations[i];
-            let variationsWithoutPrice = {};
-
-            for (let parameter in variation) {
-                variationsWithoutPrice[parameter] = variation[parameter];
-            }
-
-            delete variationsWithoutPrice.price;
-
-            if (JSON.stringify(userChoice) === JSON.stringify(variationsWithoutPrice)) {
-                console.log(variation.price);
-                printPrice.setAttribute('data-price', variation.price);
-                printPrice.innerHTML = '<h3 class="red-price">' + variation.price + '$</h3>';
-                printMessage.innerHTML = "";
-                checkoutButton.disabled = false;
-                return;
-            } else {
-                printPrice.setAttribute('data-price', '');
-                console.log('Variation is not found');
-                printPrice.innerHTML = '<h3>- -</h3>';
-                printMessage.innerHTML = 'Variation is not found';
-                checkoutButton.disabled = true;
-            }
-        }
-    }
-
-//Click to Checkout - Slide button
-
-
-//Create new post
-    window.addToCart = function (el) {
+    window.addOrder = function (el) {
 
         if (el.classList.contains('disabled')) {
             return;
         }
+        MainMethods.scrollElem($("#choose").offsetTop - 50, 100);
 
-        jQuery('html, body').animate({
-            scrollTop: $("#choose").offsetTop - 50
-        }, 100);
-
-        let clickedElementDataId = el.getAttribute('data-attr');
-        let quantity = $('#section-' + clickedElementDataId + ' .quantity');
+        let dataID = el.getAttribute('data-id');
+        let quantity = $('#section-' + dataID + ' .quantity');
         let elementHref = el.getAttribute('href');
-        let userOrderText = $('#section-' + clickedElementDataId + ' .user-order');
-        let inputName = $('#form-' + clickedElementDataId + ' input[name="first_name"]');
-        let inputLastName = $('#form-' + clickedElementDataId + ' input[name="last_name"]');
-        let inputEmail = $('#form-' + clickedElementDataId + ' input[name="email"]');
-        let inputPhone = $('#form-' + clickedElementDataId + ' input[name="phone"]');
+        let userOrderText = $('#section-' + dataID + ' .user-order');
+        let inputName = $('#form-' + dataID + ' input[name="first_name"]');
+        let inputLastName = $('#form-' + dataID + ' input[name="last_name"]');
+        let inputEmail = $('#form-' + dataID + ' input[name="email"]');
+        let inputPhone = $('#form-' + dataID + ' input[name="phone"]');
 
         let title = document.getElementById(el.name).textContent;
 
-        let priceTag = document.getElementById(clickedElementDataId + '-price');
+        let priceTag = document.getElementById(dataID + '-price');
         let price = priceTag.getAttribute('data-price');
         let randomId = Math.trunc((Math.random() * 100000));
         let productData = {

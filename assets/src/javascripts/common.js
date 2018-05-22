@@ -19,8 +19,9 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn
 
 import main from "./modules/main";
 import toggleChooseSections from "./modules/toggleChooseSections";
+import onChangeSelect from "./modules/onChangeSelect";
 import checkoutBtn from "./modules/checkoutBtn";
-import variations from "./modules/variations";
+import addOrder from "./modules/addOrder";
 import validation from "./modules/validation";
 import gallery from "./modules/gallery";
 
@@ -28,8 +29,9 @@ import gallery from "./modules/gallery";
 jQuery(function () {
     main($, $$);
     toggleChooseSections($, $$);
+    onChangeSelect($);
     checkoutBtn($);
-    variations($);
+    addOrder($);
     validation($);
     gallery();
 });

@@ -67,8 +67,8 @@
                     <div class="form-group col-sm-12">
                         <button type="submit"
                                 href="#carousel-<?= $post->carousel_counter ?>"
-                                onclick="addToCart(this)"
-                                data-attr="<?= get_the_ID() ?>"
+                                onclick="addOrder(this)"
+                                data-id="<?= get_the_ID() ?>"
                                 name="<?= get_page_uri(); ?>"
                                 class="btn btn-primary" style="float: right">Order</button>
                     </div>

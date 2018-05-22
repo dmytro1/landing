@@ -33,7 +33,7 @@
 							} ?>
                             <div class="form-group col-sm-6 col-xs-6">
                                 <select class="form-control input-design"
-                                        onchange="selectOnClick(this)"
+                                        onchange="onChangeSelect(this)"
                                         name="<?= $term->slug ?>"
                                         id="<?= get_the_ID() . '-' . $term->slug ?>"
                                         data="<?= get_the_ID() ?>">
