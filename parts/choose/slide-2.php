@@ -13,17 +13,16 @@
                      class="product-img img-responsive" style="max-height: 220px;">
             </div>
             <div class="col-sm-6">
-                <h3 id="<?= get_page_uri(); ?>"><?= get_the_title(); ?>
-                    id:<?= get_the_ID() ?></h3>
+                <h3><?= get_the_title(); ?> id:<?= get_the_ID() ?></h3>
                 <h3>Your choice is:</h3>
                 <div class="user-choice"></div>
             </div>
         </div>
-        <div class="col-md-6 personal-info" id="js-personal-info">
+        <div class="col-md-6 personal-info">
             <button class="btn btn-primary" href="#carousel-<?= $post->carousel_counter ?>" data-slide="prev">Prev Step</button>
             <div class="space-ten"></div>
             <div class="row">
-                <form id="form-<?= get_the_ID() ?>" action="#">
+                <form action="#">
                     <div class="form-group has-feedback col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><span

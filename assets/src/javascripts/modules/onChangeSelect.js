@@ -1,79 +1,73 @@
-export default ($) => {
-    window.userChoice = {};
+export default ($, $$) => {
+    let userChoice = window.userChoice = {};
+    let dataID = "";
+    let printPrice, printMessage, checkoutButton = {};
 
     window.onChangeSelect = function (el) {
-        let userChoice = window.userChoice;
-        let dataID = el.getAttribute('data');
-        let allSelects = document.querySelectorAll('[data]');
+        dataID = el.getAttribute('data');
+        printPrice = $('#section-' + dataID + ' .price');
+        printMessage = $('#section-' + dataID + ' .error-message');
+        checkoutButton = $("#section-" + dataID + " button[data-slide='next']");
 
-        for (let i in allSelects) {
+        let allSelects = $$('#section-' + dataID + ' select');
 
-            if (isNaN(i)) {
-                continue;
-            }
-
+        for (let i = 0; i < allSelects.length; i++) {
             let itemSelect = allSelects[i];
-            let selectData = itemSelect.attributes.data.value;
-
-            if (selectData === dataID) {
-                userChoice[itemSelect.name] = itemSelect.options[itemSelect.selectedIndex].value;
-            }
+            userChoice[itemSelect.name] = itemSelect.options[itemSelect.selectedIndex].value;
         }
+        console.log('This is user choice: ', userChoice);
 
-        console.log('This is user choice');
-        console.log(userChoice);
-
-        compare(userChoice, dataID);
+        compareAvailability(userChoice, dataID);
     };
 
-    function compare(userChoice, dataID) {
-
-        let printPrice = document.getElementById(dataID + '-price');
-        let printMessage = $('#message-' + dataID);
-        let checkoutButton = $("#section-" + dataID + " button[data-slide='next']");
-
+    function compareAvailability(userChoice, dataID) {
         for (let parameter in userChoice) {
             if (userChoice.hasOwnProperty(parameter) && userChoice[parameter] === "") {
-                printPrice.setAttribute('data-price', '');
-                printPrice.innerHTML = "&nbsp;";
-                console.log('Select the ' + parameter);
-                printMessage.innerHTML = 'Select the ' + parameter;
-                checkoutButton.disabled = true;
-                return;
+                return missSelect(parameter);
             }
         }
 
         let variations = variationsObject.dataById[dataID];
 
-        console.log('This is Variations');
-        console.log(variations);
+        console.log('This is Variations: ', variations);
 
-        for (let i in variations) {
+        for (let i = 0; i < variations.length; i++) {
             let variation = variations[i];
             let variationsWithoutPrice = {};
 
-            for (let parameter in variation) {
-                if (variation.hasOwnProperty(parameter)) {
-                    variationsWithoutPrice[parameter] = variation[parameter];
-                }
-            }
+            Object.assign(variationsWithoutPrice, variation);
 
             delete variationsWithoutPrice.price;
 
             if (JSON.stringify(userChoice) === JSON.stringify(variationsWithoutPrice)) {
-                console.log(variation.price);
-                printPrice.setAttribute('data-price', variation.price);
-                printPrice.innerHTML = '<h3 class="red-price">' + variation.price + '$</h3>';
-                printMessage.innerHTML = "";
-                checkoutButton.disabled = false;
-                return;
-            } else {
-                printPrice.setAttribute('data-price', '');
-                console.log('Variation is not found');
-                printPrice.innerHTML = '<h3>- -</h3>';
-                printMessage.innerHTML = 'Variation is not found';
-                checkoutButton.disabled = true;
+                return matchVariation(variation);
             }
+
+            missVariation();
         }
+    }
+
+    function missSelect(parameter) {
+        printPrice.setAttribute('data-price', '');
+        printPrice.innerHTML = "&nbsp;";
+        printMessage.innerHTML = 'Select the ' + parameter;
+        checkoutButton.disabled = true;
+        console.log('Select the ' + parameter);
+    }
+
+    function missVariation() {
+        printPrice.setAttribute('data-price', '');
+        printPrice.innerHTML = '<h3>- -</h3>';
+        printMessage.innerHTML = 'Variation is not found';
+        checkoutButton.disabled = true;
+        console.log('Variation is not found');
+    }
+
+    function matchVariation(variation) {
+        printPrice.setAttribute('data-price', variation.price);
+        printPrice.innerHTML = '<h3 class="red-price">' + variation.price + '$</h3>';
+        printMessage.innerHTML = "";
+        checkoutButton.disabled = false;
+        console.log(variation.price);
     }
 };

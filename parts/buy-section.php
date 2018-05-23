@@ -17,7 +17,7 @@
                     <div class="thumbnail">
                         <img src="<?= get_the_post_thumbnail_url(); ?>">
                         <div class="caption">
-                            <h3 id="<?= get_page_uri(); ?>"><?= get_the_title(); ?></h3>
+                            <h3><?= get_the_title(); ?></h3>
                             <p>Here will be excerpt</p>
                             <p><span><?= Product::output_price_message() ?></span>
                             </p>

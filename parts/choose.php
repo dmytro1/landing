@@ -6,8 +6,8 @@
  * Time: 01:19
  */ ?>
 <?php $products = Product::get_products(); ?>
-<section id="choose" style="">
-    <a class="close-btn scroll_btn" data-attr="<?= get_the_ID(); ?>" href="#buy">
+<section id="choose">
+    <a class="close-btn scroll_btn" href="#buy">
         <img src="<?= get_template_directory_uri() ?>/assets/built/images/close.png" class="img_responsive">
     </a>
     <div class="container-fluid">

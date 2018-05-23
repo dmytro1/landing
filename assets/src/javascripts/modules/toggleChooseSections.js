@@ -1,22 +1,38 @@
 export default ($, $$) => {
+
+    let dataID = "";
+    let section = {};
+    let closeBtn = $('.close-btn');
+    let collapseSections = $$('.collapse-section');
+    let showingSections = $$('.collapse-section.showing').length;
+
     window.toggleChooseSections = function (el) {
-        let closeBtn = $('.close-btn');
-        closeBtn.classList.add('showing');
-        if ($$('.collapse-section.showing').length) {
+
+        if (showingSections) {
             closeBtn.classList.remove('showing');
         }
 
-        let dataID = el.getAttribute('data-id');
-        let section = $('#section-' + dataID);
-        let collapseSections = $$('.collapse-section');
+        collapseOpenedSections(el);
+
+        showTargetSection();
+
+        if (showingSections) {
+            closeBtn.classList.add('showing');
+        }
+    };
+
+    function collapseOpenedSections(el) {
+        dataID = el.getAttribute('data-id');
+        section = $('#section-' + dataID);
         for (let i = 0; i < collapseSections.length; i++) {
             if (!(collapseSections[i].id === section.id)) {
                 collapseSections[i].classList.remove('showing');
             }
         }
+    }
+
+    function showTargetSection() {
         section.classList.toggle('showing');
-        if ($$('.collapse-section.showing').length) {
-            closeBtn.classList.add('showing');
-        }
-    };
+        showingSections = $$('.collapse-section.showing').length;
+    }
 }

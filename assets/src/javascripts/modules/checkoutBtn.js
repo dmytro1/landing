@@ -1,11 +1,19 @@
 export default ($) => {
+    let userChoice = window.userChoice;
+    let dataID = "";
+    let quantity, userChoiceText, choicePrice = {};
+
     window.checkoutBtn = function (el) {
-        let userChoice = window.userChoice;
         MainMethods.scrollElem($("#choose").offsetTop - 50, 100);
-        let dataID = el.getAttribute('data-id');
-        let quantity = $('#section-' + dataID + ' .quantity');
-        let userChoiceText = $('#section-' + dataID + ' .user-choice');
-        let choicePrice = document.getElementById(dataID + '-price').getAttribute('data-price');
+        dataID = el.getAttribute('data-id');
+        quantity = $('#section-' + dataID + ' .quantity');
+        userChoiceText = $('#section-' + dataID + ' .user-choice');
+        choicePrice = $('#section-' + dataID + ' .price').getAttribute('data-price');
+
+        printUserChoice()
+    };
+
+    function printUserChoice() {
         let content = '';
         for (let i in userChoice) {
             content += "<p>" + i + ": " + userChoice[i] + "</p>";
@@ -13,5 +21,5 @@ export default ($) => {
         content += "<p>Price: " + choicePrice;
         content += "<p>Quantity: " + quantity.value;
         userChoiceText.innerHTML = content;
-    };
+    }
 }

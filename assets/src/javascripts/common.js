@@ -30,7 +30,7 @@ import gallery from "./modules/gallery";
 jQuery(function () {
     main($, $$);
     toggleChooseSections($, $$);
-    onChangeSelect($);
+    onChangeSelect($, $$);
     checkoutBtn($);
     addOrder($);
     validation($);

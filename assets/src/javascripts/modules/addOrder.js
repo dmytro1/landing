@@ -10,15 +10,13 @@ export default ($) => {
         let quantity = $('#section-' + dataID + ' .quantity');
         let elementHref = el.getAttribute('href');
         let userOrderText = $('#section-' + dataID + ' .user-order');
-        let inputName = $('#form-' + dataID + ' input[name="first_name"]');
-        let inputLastName = $('#form-' + dataID + ' input[name="last_name"]');
-        let inputEmail = $('#form-' + dataID + ' input[name="email"]');
-        let inputPhone = $('#form-' + dataID + ' input[name="phone"]');
+        let inputName = $('#section-' + dataID + ' form input[name="first_name"]');
+        let inputLastName = $('#section-' + dataID + ' form input[name="last_name"]');
+        let inputEmail = $('#section-' + dataID + ' form input[name="email"]');
+        let inputPhone = $('#section-' + dataID + ' form input[name="phone"]');
 
-        let title = document.getElementById(el.name).textContent;
-
-        let priceTag = document.getElementById(dataID + '-price');
-        let price = priceTag.getAttribute('data-price');
+        let title = $('#section-' + dataID + ' h3').innerText;
+        let price = $('#section-' + dataID + ' .price').getAttribute('data-price');
         let randomId = Math.trunc((Math.random() * 100000));
         let productData = {
             "title": title + ' [' + randomId + ']',
