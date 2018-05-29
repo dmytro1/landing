@@ -1,15 +1,18 @@
+import {getOpenedSection} from "./methods";
+
 export default ($, $$) => {
     let userChoice = window.userChoice = {};
-    let dataID = "";
+    let dataID, openedSectionSelector = "";
     let printPrice, printMessage, checkoutButton = {};
 
     window.onChangeSelect = function (el) {
-        dataID = el.getAttribute('data');
-        printPrice = $('#section-' + dataID + ' .price');
-        printMessage = $('#section-' + dataID + ' .error-message');
-        checkoutButton = $("#section-" + dataID + " button[data-slide='next']");
+        dataID = el.getAttribute('data-id');
+        openedSectionSelector = getOpenedSection(dataID);
+        printPrice = $(openedSectionSelector.price);
+        printMessage = $(openedSectionSelector.section + ' .error-message');
+        checkoutButton = $(openedSectionSelector.section + " button[data-slide='next']");
 
-        let allSelects = $$('#section-' + dataID + ' select');
+        let allSelects = $$(openedSectionSelector.section + ' select');
 
         for (let i = 0; i < allSelects.length; i++) {
             let itemSelect = allSelects[i];

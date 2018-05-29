@@ -36,7 +36,7 @@
                                 <select class="form-control input-design"
                                         onchange="onChangeSelect(this)"
                                         name="<?= $term->slug ?>"
-                                        data="<?= get_the_ID() ?>">
+                                        data-id="<?= get_the_ID() ?>">
                                     <option value="">- Select <?= $term->name ?> -</option>
 									<?php foreach ( $options = Product::get_options( $term->term_id ) as $option ) : ?>
                                         <option <?= Product::is_disabled( $option ) ?>

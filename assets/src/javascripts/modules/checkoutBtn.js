@@ -1,14 +1,17 @@
+import {scrollElem, getOpenedSection} from './methods';
+
 export default ($) => {
     let userChoice = window.userChoice;
     let dataID = "";
-    let quantity, userChoiceText, choicePrice = {};
+    let quantity, userChoiceText, choicePrice, openedSectionSelector = {};
 
     window.checkoutBtn = function (el) {
-        MainMethods.scrollElem($("#choose").offsetTop - 50, 100);
+        scrollElem($("#choose").offsetTop - 50, 100);
         dataID = el.getAttribute('data-id');
-        quantity = $('#section-' + dataID + ' .quantity');
-        userChoiceText = $('#section-' + dataID + ' .user-choice');
-        choicePrice = $('#section-' + dataID + ' .price').getAttribute('data-price');
+        openedSectionSelector = getOpenedSection(dataID);
+        quantity = $(openedSectionSelector.quantity);
+        userChoiceText = $(openedSectionSelector.section + ' .user-choice');
+        choicePrice = $(openedSectionSelector.price).getAttribute('data-price');
 
         printUserChoice()
     };

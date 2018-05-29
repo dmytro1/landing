@@ -1,6 +1,8 @@
+import {getOpenedSection} from "./methods";
+
 export default ($, $$) => {
 
-    let dataID = "";
+    let dataID, openedSectionSelector = "";
     let section = {};
     let closeBtn = $('.close-btn');
     let collapseSections = $$('.collapse-section');
@@ -23,7 +25,8 @@ export default ($, $$) => {
 
     function collapseOpenedSections(el) {
         dataID = el.getAttribute('data-id');
-        section = $('#section-' + dataID);
+        openedSectionSelector = getOpenedSection(dataID);
+        section = $(openedSectionSelector.section);
         for (let i = 0; i < collapseSections.length; i++) {
             if (!(collapseSections[i].id === section.id)) {
                 collapseSections[i].classList.remove('showing');
