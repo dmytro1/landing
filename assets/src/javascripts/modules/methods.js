@@ -74,3 +74,7 @@ export function getOpenedSection(dataID) {
         quantity: section + ' .quantity',
     }
 }
+
+export function getInput(dataID, name) {
+    return $(getOpenedSection(dataID).form + ' input[name="' + name + '"]');
+}

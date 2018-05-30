@@ -30,9 +30,9 @@ class Initialization extends AbstractModuleInitialization {
 	public function register_post_type() {
 		$post_type = new PostType( self::POST_TYPE, 'Product', [ 'menu_name' => 'Products' ] );
 		$post_type->set_menu_icon( 'dashicons-list-view' );
-		$post_type->set_publicly_queryable( true );
-		$post_type->set_public( true );
-		$post_type->set_show_in_rest( true );
+		$post_type->set_publicly_queryable( false );
+		$post_type->set_public( false );
+		//$post_type->set_show_in_rest( true );
 		$this->add_parameters_taxonomy( self::POST_TYPE );
 		$this->add_parameters_metabox( self::POST_TYPE );
 		$this->add_gallery_metabox( self::POST_TYPE );

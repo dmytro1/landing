@@ -51,4 +51,40 @@ class Functions extends AbstractFunctions {
 
 		return $detect->isMobile() ? $detect->isMobile() : false;
 	}
+
+	public static function get_inputs() {
+		$result = [];
+		for ( $i = 1; $i <= 5; $i ++ ) {
+			$name        = Option::get( 'input' . $i . '_name' );
+			$placeholder = Option::get( 'input' . $i . '_placeholder' );
+			$type        = Option::get( 'input' . $i . '_type' );
+			$width       = Option::get( 'input' . $i . '_width' );
+			$icon        = Option::get( 'input' . $i . '_icon' );
+
+			if ( ! empty( $name ) ) {
+				$result[] = [
+					'name'        => $name,
+					'placeholder' => $placeholder,
+					'type'        => $type,
+					'width'       => $width,
+					'icon'        => $icon,
+				];
+			}
+		}
+
+		return $result;
+	}
+
+	public static function get_input_attr( string $name ) {
+		$result = [];
+		for ( $i = 1; $i <= 5; $i ++ ) {
+			$attr = Option::get( 'input' . $i . '_' . $name );
+
+			if ( ! empty( $attr ) ) {
+				$result[] = $attr;
+			}
+		}
+
+		return $result;
+	}
 }

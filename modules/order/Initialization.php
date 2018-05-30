@@ -8,29 +8,31 @@
 
 namespace modules\order;
 
-use WPKit\Fields\Label\Label;
-use WPKit\Fields\WPEditor;
 use WPKit\Module\AbstractModuleInitialization;
 use WPKit\PostType\MetaBox;
-use WPKit\PostType\MetaBoxRepeatable;
 use WPKit\PostType\PostType;
 
 class Initialization extends AbstractModuleInitialization {
 
 	const POST_TYPE = 'shop_order';
 
-	protected $customer_info_keys = [
-		'first_name' => 'First Name',
-		'last_name'  => 'Last Name',
-		'email'      => 'Email',
-		'phone'      => 'Phone'
-	];
+	protected function get_customer_info_keys(): array {
+		$result       = [];
+		$names        = \modules\theme\Functions::get_input_attr( 'name' );
+		$placeholders = \modules\theme\Functions::get_input_attr( 'placeholder' );
+
+		foreach ( $names as $i => $name ) {
+			$result[ $names[ $i ] ] = $placeholders[ $i ];
+		}
+
+		return $result;
+	}
 
 	public function register_post_type() {
 		$post_type = new PostType( self::POST_TYPE, 'Order', [ 'menu_name' => 'Orders' ] );
 		$post_type->set_menu_icon( 'dashicons-cart' );
-		$post_type->set_publicly_queryable( true );
-		$post_type->set_public( true );
+		$post_type->set_publicly_queryable( false );
+		$post_type->set_public( false );
 		$post_type->set_show_in_rest( true );
 		$post_type->set_menu_position( 100 );
 	}
@@ -57,7 +59,7 @@ class Initialization extends AbstractModuleInitialization {
 	public function register_customer_meta() {
 		$customer_info = new MetaBox( 'info', 'Customer Information' );
 		$customer_info->set_context( 'side' );
-		foreach ( $this->customer_info_keys as $key => $description ) {
+		foreach ( $this->get_customer_info_keys() as $key => $description ) {
 			$customer_info->add_field( $key, $description );
 		}
 		$customer_info->add_post_type( self::POST_TYPE );
@@ -83,7 +85,7 @@ class Initialization extends AbstractModuleInitialization {
 			] );
 		}
 
-		foreach ( $this->customer_info_keys as $customer_info_key => $name ) {
+		foreach ( $this->get_customer_info_keys() as $customer_info_key => $name ) {
 			register_rest_field( self::POST_TYPE, 'info_' . $customer_info_key, [
 				'get_callback'    => $show_in_rest,
 				'update_callback' => $add_post_meta,

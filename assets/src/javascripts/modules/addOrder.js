@@ -1,9 +1,11 @@
-import {scrollElem, getOpenedSection} from './methods';
+import {scrollElem, getOpenedSection, getInput} from './methods';
 
 export default ($) => {
     let userChoice = window.userChoice;
     let dataID, openedSectionSelector, elementHref, quantity = "";
     let randomId = Math.trunc((Math.random() * 100000));
+    let names = variationsObject.inputNames;
+    let placeholders = variationsObject.inputPlaceholders;
 
     window.addOrder = function (el) {
         if (el.classList.contains('disabled')) {
@@ -13,10 +15,6 @@ export default ($) => {
         dataID = el.getAttribute('data-id');
         openedSectionSelector = getOpenedSection(dataID);
         elementHref = el.getAttribute('href');
-        let inputName = $(openedSectionSelector.form + ' input[name="first_name"]');
-        let inputLastName = $(openedSectionSelector.form + ' input[name="last_name"]');
-        let inputEmail = $(openedSectionSelector.form + ' input[name="email"]');
-        let inputPhone = $(openedSectionSelector.form + ' input[name="phone"]');
 
         let title = $(openedSectionSelector.h3).innerText;
         let price = $(openedSectionSelector.price).getAttribute('data-price');
@@ -28,16 +26,17 @@ export default ($) => {
             "status": 'publish'
         };
 
+        for (let i = 0; i < names.length; i++) {
+            let value = getInput(dataID, names[i]).value;
+            productData['info_' + names[i]] = value;
+        }
+
         for (let i in userChoice) {
             productData['param_' + i] = userChoice[i];
         }
 
         productData['param_price'] = price;
         productData['param_quantity'] = quantity.value;
-        productData['info_first_name'] = inputName.value;
-        productData['info_last_name'] = inputLastName.value;
-        productData['info_email'] = inputEmail.value;
-        productData['info_phone'] = inputPhone.value;
 
         console.log('This is order data: ', productData);
         event.preventDefault();
@@ -85,10 +84,11 @@ export default ($) => {
         content += "<p>Price: " + data.param_price + "</p>";
         content += "<p>Quantity: " + quantity.value + "</p>";
         content += "<p>Total price: " + (quantity.value * data.param_price) + "</p>";
-        content += "<p>First name: " + data.info_first_name + "</p>";
-        content += "<p>Last name: " + data.info_last_name + "</p>";
-        content += "<p>E-mail: " + data.info_email + "</p>";
-        content += "<p>Phone: " + data.info_phone + "</p>";
+
+        for (let i = 0; i < names.length; i++) {
+            content += "<p>" + placeholders[i] + ": " + data['info_' + names[i]] + "</p>";
+        }
+
         content += '<br>' + response.statusText + ' status: post added';
         userOrderText.innerHTML = content;
     }
