@@ -8,7 +8,7 @@ export default ($, $$) => {
     let collapseSections = $$('.collapse-section');
     let showingSections = $$('.collapse-section.showing').length;
 
-    window.toggleChooseSections = function (el) {
+    App.toggleChooseSections = function (el) {
 
         if (showingSections) {
             closeBtn.classList.remove('showing');

@@ -8,6 +8,8 @@ import addOrder from "./modules/addOrder";
 import validation from "./modules/validation";
 import gallery from "./modules/gallery";
 
+window.App = {};
+
 main($, $$);
 toggleChooseSections($, $$);
 onChangeSelect($, $$);

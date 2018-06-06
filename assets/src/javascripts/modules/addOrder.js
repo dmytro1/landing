@@ -1,13 +1,13 @@
 import {scrollElem, getOpenedSection, getInput} from './methods';
 
 export default ($) => {
-    let userChoice = window.userChoice;
+    let userChoice = App.userChoice;
     let dataID, openedSectionSelector, elementHref, quantity = "";
     let randomId = Math.trunc((Math.random() * 100000));
     let names = variationsObject.inputNames;
     let placeholders = variationsObject.inputPlaceholders;
 
-    window.addOrder = function (el) {
+    App.addOrder = function (el) {
         if (el.classList.contains('disabled')) {
             return;
         }

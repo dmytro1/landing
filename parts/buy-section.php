@@ -21,7 +21,7 @@
                             <p>Here will be excerpt</p>
                             <p><span><?= Product::output_price_message() ?></span>
                             </p>
-                            <a onclick="toggleChooseSections(this)" href="#choose"
+                            <a onclick="App.toggleChooseSections(this)" href="#choose"
                                class="btn model scroll_btn" type="button"
                                data-id="<?= get_the_ID() ?>">CHOOSE</a>
                         </div>

@@ -30,7 +30,7 @@
     <div class="form-group col-sm-12">
         <button type="submit"
                 href="#carousel-<?= $post->carousel_counter ?>"
-                onclick="addOrder(this)"
+                onclick="App.addOrder(this)"
                 data-id="<?= get_the_ID() ?>"
                 name="<?= get_page_uri(); ?>"
                 class="btn btn-primary" style="float: right">Order

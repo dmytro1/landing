@@ -1,11 +1,11 @@
 import {scrollElem, getOpenedSection} from './methods';
 
 export default ($) => {
-    let userChoice = window.userChoice;
+    let userChoice = App.userChoice;
     let dataID = "";
     let quantity, userChoiceText, choicePrice, openedSectionSelector = {};
 
-    window.checkoutBtn = function (el) {
+    App.checkoutBtn = function (el) {
         scrollElem($("#choose").offsetTop - 50, 100);
         dataID = el.getAttribute('data-id');
         openedSectionSelector = getOpenedSection(dataID);

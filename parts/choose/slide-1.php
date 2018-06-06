@@ -34,7 +34,7 @@
 							} ?>
                             <div class="form-group col-sm-6 col-xs-6">
                                 <select class="form-control input-design"
-                                        onchange="onChangeSelect(this)"
+                                        onchange="App.onChangeSelect(this)"
                                         name="<?= $term->slug ?>"
                                         data-id="<?= get_the_ID() ?>">
                                     <option value="">- Select <?= $term->name ?> -</option>
@@ -55,7 +55,7 @@
                                placeholder="Quantity" min="1" autocomplete="quantity" value="1" required>
                     </div>
                 </div>
-                <button onclick="checkoutBtn(this)" data-id="<?= get_the_ID() ?>" class="btn btn-primary"
+                <button onclick="App.checkoutBtn(this)" data-id="<?= get_the_ID() ?>" class="btn btn-primary"
                         href="#carousel-<?= $post->carousel_counter ?>"
                         data-slide="next" <?php if ( ! empty( Product::get_product_variations() ) ) {
 					echo 'disabled';

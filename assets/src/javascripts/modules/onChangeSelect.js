@@ -1,11 +1,11 @@
 import {getOpenedSection} from "./methods";
 
 export default ($, $$) => {
-    let userChoice = window.userChoice = {};
+    let userChoice = App.userChoice = {};
     let dataID, openedSectionSelector = "";
     let printPrice, printMessage, checkoutButton = {};
 
-    window.onChangeSelect = function (el) {
+    App.onChangeSelect = function (el) {
         dataID = el.getAttribute('data-id');
         openedSectionSelector = getOpenedSection(dataID);
         printPrice = $(openedSectionSelector.price);
