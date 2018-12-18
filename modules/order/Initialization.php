@@ -68,7 +68,7 @@ class Initialization extends AbstractModuleInitialization {
 
 	public function add_action_rest_api_init() {
 		$show_in_rest = function ( $object, $field_name ) {
-			return get_post_meta( $object['id'], $field_name );
+			return get_post_meta( $object['id'], $field_name, true );
 		};
 
 		$add_post_meta = function ( $value, $post, $field_name ) {

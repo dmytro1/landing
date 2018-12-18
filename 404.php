@@ -7,3 +7,14 @@
  */
 ?>
 <p> Page not found </p>
+<?php
+global $wp_query;
+
+var_dump($wp_query->found_posts);
+
+$context = Timber\Timber::get_context();
+
+$terms = Timber\TermGetter::get_terms();
+
+var_dump($terms);
+var_dump($context);

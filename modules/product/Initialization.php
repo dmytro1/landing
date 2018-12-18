@@ -32,7 +32,7 @@ class Initialization extends AbstractModuleInitialization {
 		$post_type->set_menu_icon( 'dashicons-list-view' );
 		$post_type->set_publicly_queryable( false );
 		$post_type->set_public( false );
-		//$post_type->set_show_in_rest( true );
+		$post_type->set_show_in_rest( true );
 		$this->add_parameters_taxonomy( self::POST_TYPE );
 		$this->add_parameters_metabox( self::POST_TYPE );
 		$this->add_gallery_metabox( self::POST_TYPE );
@@ -110,6 +110,26 @@ class Initialization extends AbstractModuleInitialization {
 					]
 				);
 			}
+		}
+	}
+
+	public function add_action_rest_api_init() {
+		$show_in_rest = function ( $object, $field_name ) {
+			return get_post_meta( $object['id'], $field_name, true );
+		};
+
+		$add_post_meta = function ( $value, $post, $field_name ) {
+			if ( ! $value ) {
+				return;
+			}
+			update_post_meta( $post->ID, $field_name, strip_tags( $value ) );
+		};
+
+		foreach ( $terms = Functions::get_terms() as $term ) {
+			register_rest_field( self::POST_TYPE, self::VARIATION_META . '_' . $term->slug, [
+				'get_callback'    => $show_in_rest,
+				'update_callback' => $add_post_meta,
+			] );
 		}
 	}
 }

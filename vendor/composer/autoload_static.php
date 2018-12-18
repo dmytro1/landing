@@ -6,10 +6,27 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit1f3796eae8f4832b7c4db636f288c149
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'W' => 
         array (
             'WPKit\\' => 6,
+        ),
+        'T' => 
+        array (
+            'Twig\\' => 5,
+            'Timber\\' => 7,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+        ),
+        'C' => 
+        array (
+            'Composer\\Installers\\' => 20,
         ),
     );
 
@@ -18,9 +35,43 @@ class ComposerStaticInit1f3796eae8f4832b7c4db636f288c149
         array (
             0 => __DIR__ . '/..' . '/redink-no/wpkit',
         ),
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Timber\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/timber/timber/lib',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Composer\\Installers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
+        ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/asm89/twig-cache-extension/lib',
     );
 
     public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+        'R' => 
+        array (
+            'Routes' => 
+            array (
+                0 => __DIR__ . '/..' . '/upstatement/routes',
+            ),
+        ),
         'D' => 
         array (
             'Detection' => 
@@ -31,6 +82,7 @@ class ComposerStaticInit1f3796eae8f4832b7c4db636f288c149
     );
 
     public static $classMap = array (
+        'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
         'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
     );
 
@@ -39,6 +91,7 @@ class ComposerStaticInit1f3796eae8f4832b7c4db636f288c149
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit1f3796eae8f4832b7c4db636f288c149::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit1f3796eae8f4832b7c4db636f288c149::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit1f3796eae8f4832b7c4db636f288c149::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit1f3796eae8f4832b7c4db636f288c149::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit1f3796eae8f4832b7c4db636f288c149::$classMap;
 

@@ -50,7 +50,7 @@ class Initialization extends AbstractThemeInitialization {
 		wp_enqueue_script( 'bootstrap-js', self::get_path_to_libs() . 'bootstrap.min.js', [ 'jquery' ], '', true );
 		wp_enqueue_script( 'validator-js', self::get_path_to_libs() . 'validator.js', [ 'jquery' ], '', true );
 		wp_enqueue_script( 'site-js', self::get_path_to_built() . 'javascripts/common.js', [], '', true );
-		wp_enqueue_script( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js', [], '', true );
+		wp_enqueue_script( 'jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js', [], '', true );
 
 		wp_localize_script( 'site-js', 'variationsObject', [
 			'dataById'          => \Product::get_product_variations_by_id(),
@@ -159,4 +159,18 @@ class Initialization extends AbstractThemeInitialization {
 		//return get_template_directory_uri() . '/assets/css';
 		return get_template_directory_uri() . '/assets/libs/';
 	}
+
+	public static function add_filter_get_theme_mod_image( $image_id, $image_size ) {
+		$image_url  = '';
+		$image_size = empty( $image_size ) ? 'full' : $image_size;
+		if ( ! empty( $image_id ) ) {
+			$image_data = wp_get_attachment_image_src( $image_id, $image_size );
+			if ( ! empty( $image_data[0] ) ) {
+				$image_url = $image_data['0'];
+			}
+		}
+
+		return $image_url;
+	}
+
 }

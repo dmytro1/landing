@@ -9,30 +9,51 @@
  * Template Name: Daddy Apple
  */
 ?>
-<?php get_header(); ?>
+<?php //get_header(); ?>
+<?php //get_template_part( 'parts/start' ); ?>
+<?php //get_template_part( 'parts/how-it-works' ); ?>
+<?php ////get_template_part( 'parts/about' ); ?>
+<?php //get_template_part( 'parts/buy-section' ); ?>
+<?php //get_template_part( 'parts/choose' ); ?>
+<?php //get_template_part( 'parts/split-images' ); ?>
+<?php //get_template_part( 'parts/reviews' ); ?>
+<?php //get_template_part( 'parts/faq' ); ?>
+<?php //get_template_part( 'parts/mobile-app' ); ?>
+<?php //get_template_part( 'parts/newsletter' ); ?>
+<?php //get_template_part( 'parts/contact' ); ?>
+<?php //get_footer(); ?>
 
-<?php get_template_part( 'parts/start' ); ?>
+<?php
+$context         = Timber::get_context();
+$context['menu'] = new Timber\Menu( 'top-nav' );
 
-<?php get_template_part( 'parts/how-it-works' ); ?>
+$custom_logo_id  = get_theme_mod( 'custom_logo' );
+$logo            = wp_get_attachment_image_url( $custom_logo_id, 'full', true );
+$context['logo'] = $logo;
 
-<?php //get_template_part( 'parts/about' ); ?>
+$post            = new Timber\Post();
+$context['post'] = $post;
 
-<?php get_template_part( 'parts/buy-section' ); ?>
+$args = [
+	'post_type'      => 'product',
+	'order'          => 'DESC',
+	'posts_per_page' => 9,
+	'post_status'    => 'publish'
+];
 
-<?php get_template_part( 'parts/choose' ); ?>
+$context['products']      = Timber\Timber::get_posts( $args );
+$context['price_message'] = Product::output_price_message();
 
-<?php get_template_part( 'parts/split-images' ); ?>
+$context['form_inputs'] = Theme::get_inputs();
 
-<?php get_template_part( 'parts/reviews' ); ?>
+$args                     = [
+	'taxonomy'   => 'parameter',
+	'hide_empty' => false,
+];
+$context['product_terms'] = Timber::get_terms( $args );
 
-<?php get_template_part( 'parts/faq' ); ?>
+$context['product_variations'] = Product::get_product_variations();
 
-<?php get_template_part( 'parts/mobile-app' ); ?>
+//var_dump( $context['product_variations'] );
 
-<?php get_template_part( 'parts/newsletter' ); ?>
-
-<?php get_template_part( 'parts/contact' ); ?>
-
-<?php get_footer(); ?>
-
-
+Timber::render( 'templates/daddy.twig', $context );

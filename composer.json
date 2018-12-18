@@ -1,7 +1,9 @@
 {
   "require": {
     "redink-no/wpkit": "dev-develop",
-    "mobiledetect/mobiledetectlib": "2.8.31"
+    "mobiledetect/mobiledetectlib": "2.8.31",
+    "timber/timber": "2.x-dev",
+    "aristath/kirki": "3.0.15"
   },
   "config": {
     "disable-tls" : true,
